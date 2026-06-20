@@ -229,4 +229,41 @@ body {
     padding: 40px;
     border-left: 4px solid #D4AF37;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    :root {
+    --deep-forest: #2C5E43;
+    --muted-sage: #4A5A50;
+    --clinical-white: #F4F6F4;
+    --gold: #C5A059;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--muted-sage);
+    background-color: var(--clinical-white);
+    line-height: 1.6;
+}
+
+.hero {
+    background: linear-gradient(rgba(44, 94, 67, 0.9), rgba(44, 94, 67, 0.9)), url('assets/hero-bg.jpg');
+    background-size: cover;
+    padding: 100px 20px;
+    text-align: center;
+    color: #FFF;
+}
+
+.hero-brand-title {
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
+    margin: 10px 0;
+}
+
+.cta-gold {
+    background-color: var(--gold);
+    color: #FFF;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 800;
+    cursor: pointer;
+}
 }
