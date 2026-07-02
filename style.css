@@ -1,4 +1,16 @@
-/* GLOBAL STYLES */
+/* ==========================================================================
+   1. DESIGN SYSTEM & VARIABLE TOKENS
+   ========================================================================== */
+:root {
+    --bg-dark-somatic: #0F1A15;   /* Premium background inspired by WhatsApp Image 2026-07-02 at 1.56.15 PM (1).jpeg */
+    --surface-dark: #12221B;      /* Card and secondary section container backgrounds */
+    --text-primary: #E8F0ED;      /* High contrast somatic white for optimal readability */
+    --text-muted: #BCCBC6;        /* Subdued text for descriptions and structural labels */
+    --gold: #C5A059;              /* Authentic burnished gold accent color */
+    --border-glow: rgba(255, 255, 255, 0.08);
+}
+
+/* GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,31 +19,33 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    color: #333;
+    color: var(--text-muted);
+    background-color: var(--bg-dark-somatic);
     line-height: 1.6;
 }
 
-/* NAVBAR */
+/* ==========================================================================
+   2. NAVBAR
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    background: var(--bg-dark-somatic);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .brand-logo {
-    height: 45px; /* This is the "sweet spot" for most professional navbars */
-    width: auto;  /* This ensures the logo doesn't look stretched or squashed */
+    height: 45px; 
+    width: auto;  
     display: block;
-    object-fit: contain; /* Extra insurance to keep the proportions perfect */
+    object-fit: contain; 
 }
 
-/* Ensure the container doesn't force extra height */
 .logo-container {
     display: flex;
     align-items: center;
@@ -41,13 +55,19 @@ body {
 .nav-links a {
     margin-left: 20px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 14px;
+    transition: color 0.2s ease;
 }
 
-/* HERO */
-/* 1. THE MAIN HERO CONTAINER */
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
 .hero {
     height: 95vh;
     display: flex;
@@ -55,11 +75,9 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    /* This gradient adds depth so the screen doesn't look 'empty' */
-    background: radial-gradient(circle, #ffffff 0%, #f9f9f9 100%);
+    background: linear-gradient(135deg, #0F1A15 0%, #1B362F 50%, #25463C 100%);
 }
 
-/* 2. THE BACKGROUND TEXTURE (The Fascial Web) */
 .hero-bg-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -67,58 +85,76 @@ body {
     background-image: url('assets/fascial-web-bg.png');
     background-size: cover;
     background-position: center;
-    opacity: 0.05; 
+    opacity: 0.03; 
     z-index: 1;
 }
 
-/* 3. THE TEXT CONTENT WRAPPER */
 .hero-inner {
     position: relative;
     z-index: 2; 
     text-align: center;
 }
 
-/* 4. THE BRAND TITLE (Replaces the old .hero h1) */
-.hero-brand-title {
-    /* clamp makes it huge on desktop (180px) but readable on mobile */
-    font-size: clamp(80px, 18vw, 180px);
-    font-weight: 900;
-    letter-spacing: -8px; /* High-end 'tight' kerning */
-    line-height: 0.8;
-    color: #e0af29;
-    margin: 10px 0;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.corporate-seal {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 15px;
 }
 
-/* 5. THE TAGLINE */
+.hero-brand-title {
+    font-size: clamp(80px, 15vw, 140px);
+    font-weight: 900;
+    letter-spacing: -4px; 
+    line-height: 0.8;
+    color: var(--text-primary);
+    margin: 10px 0;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
 .hero-architecture-tag {
-    font-size: 22px;
+    font-size: clamp(14px, 3vw, 22px);
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 12px; /* Adds the 'Architectural' feel */
-    color: #555;
+    letter-spacing: 8px; 
+    color: var(--gold);
     margin-top: 20px;
 }
 
-/* 6. THE AUTHORITY BAR (NIMHANS/Apollo) */
 .hero-credentials {
     margin-top: 50px;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #999;
+    color: var(--text-muted);
 }
 
 .hero-credentials .dot {
-    color: #D4AF37; /* Your branding gold */
+    color: var(--gold); 
     margin: 0 15px;
 }
-/* PROTOCOL SECTION */
+
+/* ==========================================================================
+   4. CLINICAL PROTOCOL & GRID
+   ========================================================================== */
 .protocol-section {
     padding: 100px 5%;
-    background: #ffffff;
+    background: var(--bg-dark-somatic);
     text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.section-intro {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-top: 10px;
 }
 
 .protocol-grid {
@@ -129,29 +165,37 @@ body {
 }
 
 .protocol-card {
+    background: rgba(255, 255, 255, 0.02);
     padding: 40px;
-    border: 1px solid #eee;
-    transition: 0.4s;
+    border: 1px solid var(--border-glow);
+    transition: 0.4s ease;
     text-align: left;
     position: relative;
+    border-radius: 8px;
 }
 
 .protocol-card:hover {
-    border-color: #D4AF37;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
 }
 
 .pillar-num {
     font-size: 40px;
     font-weight: 800;
-    color: #f0f0f0;
+    color: rgba(255, 255, 255, 0.03);
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
+.protocol-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
 .science-tag {
-    color: #D4AF37;
+    color: var(--gold);
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -159,11 +203,131 @@ body {
     margin-bottom: 15px;
 }
 
-/* BITHIKA SECTION */
+/* ==========================================================================
+   5. COMPLIANCE & PRICING SUBSCRIPTIONS
+   ========================================================================== */
+.pricing-section {
+    padding: 100px 5%;
+    background-color: var(--surface-dark);
+    text-align: center;
+}
+
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.tier-card-web {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glow);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 440px;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.tier-card-web:hover {
+    transform: translateY(-4px);
+}
+
+.featured-tier {
+    border-color: var(--gold);
+    background: rgba(197, 160, 89, 0.04);
+}
+
+.tier-badge-web {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(197, 160, 89, 0.1);
+    display: inline-block;
+}
+
+.tier-card-web h3 {
+    font-size: 24px;
+    margin: 20px 0 10px 0;
+    color: var(--text-primary);
+}
+
+.tier-description-web {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.features-list {
+    margin-bottom: 30px;
+}
+
+.features-list p {
+    font-size: 14px;
+    margin: 12px 0;
+    color: var(--text-primary);
+}
+
+.price-box {
+    margin-bottom: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.currency {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.duration {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.inr-approx {
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+.cta-gold-pricing {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.active-cta, .cta-gold-pricing:hover {
+    background: var(--gold);
+    color: var(--bg-dark-somatic);
+}
+
+/* ==========================================================================
+   6. FLUSH (BITHIKA) SECTION
+   ========================================================================== */
 .flush-section {
     padding: 100px 5%;
-    background-color: #1a1a1a;
-    color: #ffffff;
+    background-color: var(--bg-dark-somatic);
 }
 
 .flush-container {
@@ -175,27 +339,65 @@ body {
     flex-wrap: wrap;
 }
 
+.flush-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.flush-text h2 {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    margin: 10px 0 20px;
+}
+
 .science-label {
-    color: #D4AF37;
+    color: var(--gold);
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
+    font-size: 12px;
 }
 
-.cta-gold {
-    background: #D4AF37;
-    border: none;
-    padding: 12px 25px;
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 20px;
+.science-breakdown {
+    margin-top: 30px;
 }
 
-/* RESEARCH NOTE (The Fix for your Top-Left problem) */
+.pathway-item {
+    margin-bottom: 20px;
+}
+
+.pathway-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.flush-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.placeholder-box {
+    width: 100%;
+    height: 350px;
+    max-width: 450px;
+    background: var(--surface-dark);
+    border: 1px dashed var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   7. RESEARCH NOTE & CLINICAL EVIDENCE
+   ========================================================================== */
 .research-note {
     padding: 80px 5%;
-    background: #f4f4f4;
+    background: var(--surface-dark);
     text-align: center;
 }
 
@@ -206,64 +408,72 @@ body {
 
 .research-note h2 {
     margin-bottom: 20px;
-    color: #D4AF37;
+    color: var(--gold);
 }
 
-/* TESTIMONIALS */
+.research-note p {
+    color: var(--text-muted);
+}
+
 .testimonial-section {
-    padding: 80px 5%;
-    background: #fdfdfd;
+    padding: 100px 5%;
+    background: var(--bg-dark-somatic);
+    text-align: center;
+}
+
+.section-sub {
+    color: var(--text-muted);
+    margin-top: 10px;
 }
 
 .testimonial-grid {
     display: flex;
-    gap: 20px;
-    margin-top: 40px;
+    gap: 30px;
+    margin-top: 50px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .case-card {
     flex: 1;
     min-width: 300px;
-    background: white;
+    max-width: 550px;
+    background: var(--surface-dark);
     padding: 40px;
-    border-left: 4px solid #D4AF37;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    :root {
-    --deep-forest: #2C5E43;
-    --muted-sage: #4A5A50;
-    --clinical-white: #F4F6F4;
-    --gold: #C5A059;
+    text-align: left;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 0 8px 8px 0;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--muted-sage);
-    background-color: var(--clinical-white);
-    line-height: 1.6;
+.case-label {
+    display: block;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
 }
 
-.hero {
-    background: linear-gradient(rgba(44, 94, 67, 0.9), rgba(44, 94, 67, 0.9)), url('assets/hero-bg.jpg');
-    background-size: cover;
-    padding: 100px 20px;
-    text-align: center;
-    color: #FFF;
+.case-quote {
+    color: var(--text-primary);
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
-.hero-brand-title {
-    font-size: 5rem;
-    letter-spacing: 0.5rem;
-    margin: 10px 0;
+.case-author {
+    display: flex;
+    flex-direction: column;
 }
 
-.cta-gold {
-    background-color: var(--gold);
-    color: #FFF;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    font-weight: 800;
-    cursor: pointer;
+.case-author strong {
+    color: var(--text-primary);
+    font-size: 14px;
 }
+
+.case-author span {
+    font-size: 12px;
+    color: var(--text-muted);
 }
